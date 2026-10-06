@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mononoke - DAST methodology</title>
+<link rel="icon" href="logo.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="toolbar">
+    <div class="brand">
+      <img class="logo" src="logo.png" alt="Mononoke">
+      <div>
+        <div class="wordmark">Mononoke</div>
+        <div class="sub">DAST methodology support</div>
+      </div>
+    </div>
+    <button class="search" id="btn-search" type="button"><span>Search</span><kbd>Ctrl K</kbd></button>
+    <button id="btn-new" type="button">New</button>
+    <button id="btn-save" type="button">Save</button>
+    <button id="btn-open" type="button">Open</button>
+  </div>
+
+  <div id="main">
+    <nav id="sidebar"><div class="tree" id="tree"></div></nav>
+    <div id="resizer"></div>
+    <main id="content"></main>
+  </div>
+
+  <!-- welcome -->
+  <div class="overlay" id="home">
+    <div class="modal home">
+      <h1>Mononoke</h1>
+      <p>DAST methodology support. Build a per-functionality test plan that adapts to the target.</p>
+      <div class="home-actions">
+        <button class="primary" id="home-new" type="button">Start a new assessment</button>
+        <button id="home-open" type="button">Open a session (.json)</button>
+      </div>
+      <p class="disclaimer" id="home-disc"></p>
+    </div>
+  </div>
+
+  <!-- search palette -->
+  <div class="overlay" id="palette-ov">
+    <div class="palette">
+      <input id="palette-input" type="text" placeholder="Search techniques, payloads, questions..." autocomplete="off" spellcheck="false">
+      <div class="results" id="palette-results"></div>
+      <div class="hintbar"><span>Enter to open</span><span>Up/Down to move</span><span>Esc to close</span></div>
+    </div>
+  </div>
+
+  <input type="file" id="file-input" accept=".json,application/json" style="display:none">
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
