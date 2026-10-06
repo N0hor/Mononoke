@@ -133,6 +133,7 @@ function emptyState() {
 }
 let STATE = emptyState();
 let SEL = "recon";
+let THEME = "dark";
 
 function getPage(id) { return STATE.pages.find(p => p.id === id) || null; }
 function getFunc(pid, fid) { const p = getPage(pid); return p ? (p.funcs.find(f => f.id === fid) || null) : null; }
@@ -582,8 +583,13 @@ function paletteGo(i) { const it = PRES[i]; if (!it) return; closePalette(); sel
 function showHome() { $("#home").classList.add("open"); }
 function closeHome() { $("#home").classList.remove("open"); }
 
+/* theme (in memory only, no persistence) */
+function setTheme(t) { THEME = t; document.documentElement.setAttribute("data-theme", t); const b = $("#btn-theme"); if (b) b.textContent = t === "dark" ? "Light" : "Dark"; }
+function toggleTheme() { setTheme(THEME === "dark" ? "light" : "dark"); }
+
 /* --------------------------------------------------------------------- init */
 function init() {
+  setTheme("dark");
   $("#home-disc").textContent = DATA.meta.note + " Methodology synthesized from the user's notes and the PortSwigger Web Security Academy. In-memory only: use Save to export your session.";
   renderTree(); renderContent();
 
@@ -597,6 +603,7 @@ function init() {
   $("#btn-save").addEventListener("click", saveSession);
   $("#btn-open").addEventListener("click", openSession);
   $("#btn-search").addEventListener("click", openPalette);
+  $("#btn-theme").addEventListener("click", toggleTheme);
   $("#home-new").addEventListener("click", newSession);
   $("#home-open").addEventListener("click", openSession);
   $("#file-input").addEventListener("change", e => { loadFile(e.target.files[0]); e.target.value = ""; });
